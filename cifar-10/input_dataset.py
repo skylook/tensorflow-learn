@@ -23,9 +23,9 @@ def read_cifar10(filename_queue):
     image.depth = 3
     label_bytes = 1
     image_bytes = image.height * image.width * image.depth
-    Bytes_to_read = label_bytes + image_bytes
+    bytes_to_read = label_bytes + image_bytes
     # 定义一个Reader，它每次能从文件中读取固定字节数
-    reader = tf.FixedLengthRecordReader(record_bytes=Bytes_to_read)
+    reader = tf.FixedLengthRecordReader(record_bytes=bytes_to_read)
     # 返回从filename_queue中读取的(key, value)对，key和value都是字符串类型的tensor，并且当队列中的某一个文件读完成时，该文件名会dequeue
     image.key, value_str = reader.read(filename_queue)
     # 解码操作可以看作读二进制文件，把字符串中的字节转换为数值向量,每一个数值占用一个字节,在[0, 255]区间内，因此out_type要取uint8类型
